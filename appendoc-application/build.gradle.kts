@@ -8,4 +8,5 @@ plugins {
 
 dependencies {
     implementation(project(":appendoc-domain"))
+    implementation("org.springframework:spring-context:5.3.23")
 }
