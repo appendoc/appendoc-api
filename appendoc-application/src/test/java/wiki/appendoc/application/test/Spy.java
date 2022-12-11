@@ -1,4 +1,4 @@
-package wiki.appendoc.application.wiki.service;
+package wiki.appendoc.application.test;
 
 public final class Spy {
 

@@ -2,6 +2,8 @@ package wiki.appendoc.application.wiki.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import wiki.appendoc.application.test.Mock;
+import wiki.appendoc.application.test.Spy;
 import wiki.appendoc.application.wiki.port.inbound.WriteNewWikiDocumentUseCase;
 import wiki.appendoc.application.wiki.port.outbound.FindWikiDocumentPort;
 import wiki.appendoc.application.wiki.port.outbound.SaveWikiDocumentPort;
@@ -15,14 +17,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("위키 문서 작성 유스케이스 테스트")
 class WriteNewWikiDocumentServiceTest {
 
     @DisplayName("새 위키 문서를 작성한다.")
     @Test
     void testWriteNewWikiDocument() {
         final Spy spy = Spy.getNewSpy();
-        final SaveWikiDocumentPort mockSaveWikiDocumentPort = createMockSaveWikiDocumentPort(spy);
-        final FindWikiDocumentPort mockFindWikiDocumentPort = createMockFindWikiDocumentPort(null);
+        final SaveWikiDocumentPort mockSaveWikiDocumentPort = Mock.OutboundPort.createMockSaveWikiDocumentPort(spy);
+        final FindWikiDocumentPort mockFindWikiDocumentPort = Mock.OutboundPort.createMockFindWikiDocumentPort(null);
         var sut = new WriteNewWikiDocumentService(mockSaveWikiDocumentPort, mockFindWikiDocumentPort);
 
         final WriteNewWikiDocumentUseCase.WriteNewWikiResult result = sut.writeWikiDocument(
@@ -44,8 +47,8 @@ class WriteNewWikiDocumentServiceTest {
                 "내용",
                 LocalDateTime.now()
         );
-        final SaveWikiDocumentPort mockSaveWikiDocumentPort = createMockSaveWikiDocumentPort(null);
-        final FindWikiDocumentPort mockFindWikiDocumentPort = createMockFindWikiDocumentPort(mockWikiDocument);
+        final SaveWikiDocumentPort mockSaveWikiDocumentPort = Mock.OutboundPort.createMockSaveWikiDocumentPort(null);
+        final FindWikiDocumentPort mockFindWikiDocumentPort = Mock.OutboundPort.createMockFindWikiDocumentPort(mockWikiDocument);
 
         var sut = new WriteNewWikiDocumentService(mockSaveWikiDocumentPort, mockFindWikiDocumentPort);
 
@@ -59,15 +62,5 @@ class WriteNewWikiDocumentServiceTest {
                     );
                 }
         );
-    }
-
-    private SaveWikiDocumentPort createMockSaveWikiDocumentPort(Spy spy) {
-        return wikiDocument -> {
-            spy.invoke();
-        };
-    }
-
-    private FindWikiDocumentPort createMockFindWikiDocumentPort(WikiDocument mockWikiDocument) {
-        return documentName -> mockWikiDocument;
     }
 }
