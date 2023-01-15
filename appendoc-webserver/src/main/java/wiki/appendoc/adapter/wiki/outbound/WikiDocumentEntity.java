@@ -31,7 +31,7 @@ public class WikiDocumentEntity {
     @Column(name = "document_name", nullable = false)
     private String documentName;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, columnDefinition = "text")
     private String content;
 
     @Column(name = "written_at", nullable = false)

@@ -33,6 +33,7 @@ public class WikiController implements WikiApi {
     @PostMapping
     @Override
     public CreateNewWikiDocumentResponse postNewWikiDocument(@RequestBody CreateNewWikiDocumentRequest request) {
+        log.debug("request: {}", request);
         final var command = new WriteNewWikiDocumentUseCase.WriteNewWikiCommand(
                 request.documentName(),
                 request.content(),
