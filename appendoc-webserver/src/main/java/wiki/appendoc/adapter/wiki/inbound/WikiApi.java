@@ -1,6 +1,7 @@
 package wiki.appendoc.adapter.wiki.inbound;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import wiki.appendoc.api.WikiUserAuthToken;
 
 import java.time.LocalDateTime;
 
@@ -26,5 +27,7 @@ public interface WikiApi {
     ) {
     }
 
-    FindWikiDocumentResponse getWikiDocument(String documentName);
+    FindWikiDocumentResponse getWikiDocument(
+            String documentName
+    );
 }

@@ -1,7 +1,30 @@
 spring:
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 1000
+        order_updates: true
+        order_inserts: true
+    show-sql: true
+  h2:
+    console:
+      enabled: false
 
 logging:
   level:
     wiki.appendoc: DEBUG
+
+application:
+  config:
+    oauth2:
+      google:
+        clientId: 125569676046-vv5pkr06bdrsm1cm7j4kg3a6b6u182jn.apps.googleusercontent.com
+        clientSecret: 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
+        redirectUri: https://dev.appendoc.wiki/auth/oauth2/google/callback
+  jwt:
+    path: "/"
+    domain: "api-dev.appendoc.wiki"
+    issuer: "dev.appendoc.wiki"
+    secret: "devdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdevdev"
