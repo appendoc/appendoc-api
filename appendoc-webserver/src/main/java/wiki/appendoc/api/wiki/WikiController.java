@@ -49,6 +49,7 @@ public class WikiController implements WikiApi {
     @Override
     public FindWikiDocumentResponse getWikiDocument(@PathVariable String documentName) {
         try {
+            log.debug("documentName: {}", documentName);
             final var result = readWikiDocumentByDocumentNameUseCase.readWikiDocument(
                     new ReadWikiDocumentByDocumentNameUseCase.ReadWikiDocumentByDocumentNameQuery(
                             documentName

@@ -5,12 +5,14 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import wiki.appendoc.application.wiki.port.inbound.WriteNewWikiDocumentUseCase;
 
 import java.time.LocalDateTime;
 
+@ConfigurationPropertiesScan
 @SpringBootApplication
 public class AppendocWikiApplication {
 

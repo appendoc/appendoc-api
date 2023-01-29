@@ -1,7 +1,35 @@
 spring:
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 1000
+        order_updates: true
+        order_inserts: true
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:local
+    driver-class-name: org.h2.Driver
+    username: sa
 
 logging:
   level:
     wiki.appendoc: DEBUG
+
+application:
+  config:
+    oauth2:
+      google:
+        clientId: 125569676046-vv5pkr06bdrsm1cm7j4kg3a6b6u182jn.apps.googleusercontent.com
+        clientSecret: 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
+        redirectUri: http://127.0.0.1:3000/auth/oauth2/google/callback
+  jwt:
+    path: "/"
+    domain: "127.0.0.1"
+    issuer: "127.0.0.1:3000"
+    secret: "appendocappendocappendocappendocappendocappendocappendocappendocappendocappendocappendocappendocappendoc"
